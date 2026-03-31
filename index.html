@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GnitHub - Where the world solves physics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+        });
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gh: {
+                            bg: '#0d1117',
+                            header: '#161b22',
+                            border: '#30363d',
+                            text: '#c9d1d9',
+                            muted: '#8b949e',
+                            link: '#58a6ff',
+                            green: '#238636',
+                            greenHover: '#2ea043',
+                            terminalBg: '#010409'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; }
+        .contribution-cell { width: 10px; height: 10px; border-radius: 2px; }
+        .bg-level-0 { background-color: #161b22; }
+        .bg-level-1 { background-color: #0e4429; }
+        .bg-level-2 { background-color: #006d32; }
+        .bg-level-3 { background-color: #26a641; }
+        .bg-level-4 { background-color: #39d353; }
+        
+        /* ターミナルのタイピングアニメーション用（スクショ用なので静的でも可） */
+        .blinking-cursor { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-gh-header border-b border-gh-border px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <!-- GnitHub Logo (Modified from GitHub) -->
+            <div class="text-white flex items-center gap-2">
+                <i class="fa-solid fa-atom text-3xl"></i>
+                <span class="font-bold text-xl tracking-tight">GnitHub</span>
+            </div>
+            
+            <div class="relative w-64 hidden md:block">
+                <input type="text" class="w-full bg-gh-bg border border-gh-border rounded-md py-1 px-3 text-sm text-gh-text focus:outline-none focus:border-gh-link focus:ring-1 focus:ring-gh-link placeholder-gh-muted" placeholder="Search equations or jump to...">
+                <div class="absolute right-2 top-1.5 text-xs border border-gh-border rounded px-1 text-gh-muted">/</div>
+            </div>
+
+            <nav class="hidden lg:flex space-x-4 text-sm font-semibold">
+                <a href="#" class="hover:text-gh-muted transition-colors">Pull requests</a>
+                <a href="#" class="hover:text-gh-muted transition-colors">Issues</a>
+                <a href="#" class="hover:text-gh-muted transition-colors">Codespaces</a>
+                <a href="#" class="hover:text-gh-muted transition-colors">Explore</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4 text-gh-text">
+            <i class="fa-regular fa-bell hover:text-gh-muted cursor-pointer"></i>
+            <div class="flex items-center gap-1 cursor-pointer">
+                <i class="fa-solid fa-plus hover:text-gh-muted"></i>
+                <i class="fa-solid fa-caret-down text-xs"></i>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center border border-gh-border cursor-pointer">
+                <i class="fa-solid fa-user-astronaut text-white text-sm"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-[1280px] mx-auto w-full px-4 md:px-8 py-8 flex flex-col md:flex-row gap-8 flex-1">
+        
+        <!-- Left Sidebar (Profile) -->
+        <aside class="w-full md:w-1/4 lg:w-1/5 flex flex-col gap-4">
+            <div class="relative">
+                <div class="w-full aspect-square rounded-full border border-gh-border bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center overflow-hidden z-10 relative">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=GnitUser&backgroundColor=transparent" alt="Avatar" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute bottom-6 right-0 bg-gh-header border border-gh-border rounded-full p-2 z-20 flex items-center justify-center cursor-pointer shadow-lg hover:text-gh-link">
+                    🍎
+                </div>
+            </div>
+            
+            <div>
+                <h1 class="text-2xl font-bold text-white">Isaac N.</h1>
+                <h2 class="text-xl text-gh-muted font-light">@apple-faller</h2>
+            </div>
+            
+            <p class="text-base">
+                Physics Enthusiast. Core member of <span class="font-semibold">@Gnit-Inc</span>. Still trying to unify quantum mechanics and general relativity.
+            </p>
+            
+            <div class="flex items-center gap-4 text-sm text-gh-muted">
+                <a href="#" class="hover:text-gh-link"><i class="fa-solid fa-user-group mr-1"></i><span class="text-white font-bold">1.2k</span> followers</a>
+                <a href="#" class="hover:text-gh-link"><span class="text-white font-bold">42</span> following</a>
+            </div>
+
+            <div class="border-t border-gh-border pt-4 mt-2">
+                <h3 class="font-bold text-sm mb-2">Organizations</h3>
+                <div class="flex gap-2">
+                    <div class="w-8 h-8 rounded bg-gray-800 flex items-center justify-center border border-gh-border cursor-pointer hover:border-gh-muted" title="Gnit Inc.">
+                        <i class="fa-solid fa-atom text-blue-400"></i>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Main Content -->
+        <main class="w-full md:w-3/4 lg:w-4/5 flex flex-col gap-6">
+            
+            <!-- Navigation Tabs -->
+            <div class="border-b border-gh-border flex gap-6 text-sm">
+                <a href="#" class="py-2 border-b-2 border-transparent hover:border-gh-muted hover:text-gh-text transition-colors"><i class="fa-solid fa-book-open mr-2"></i>Overview</a>
+                <a href="#" class="py-2 border-b-2 border-[#f78166] text-white font-semibold"><i class="fa-solid fa-book-journal-whills mr-2"></i>Solves <span class="bg-gh-border text-white px-2 py-0.5 rounded-full text-xs ml-1">125</span></a>
+                <a href="#" class="py-2 border-b-2 border-transparent hover:border-gh-muted hover:text-gh-text transition-colors"><i class="fa-solid fa-chart-line mr-2"></i>Deviations</a>
+            </div>
+
+            <!-- Notice / Banner -->
+            <div class="border border-gh-border rounded-md p-4 bg-gh-header flex items-start gap-4">
+                <i class="fa-solid fa-circle-info text-blue-400 mt-1"></i>
+                <div>
+                    <h3 class="font-semibold text-white mb-1">Gnit CLI 2.0 is now available!</h3>
+                    <p class="text-sm text-gh-muted mb-2">Manage your physics equations, track calculation errors, and push your answers directly to the universe using our new command line tool.</p>
+                </div>
+            </div>
+
+            <!-- Terminal Mockup (The core of the joke) -->
+            <div>
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-base text-white font-normal">Recent Activity Log</h2>
+                    <span class="text-xs text-gh-muted">gnit-cli/v2.0.26</span>
+                </div>
+                <div class="bg-gh-terminalBg border border-gh-border rounded-md p-4 font-mono text-[13px] md:text-sm overflow-x-auto shadow-2xl relative">
+                    <!-- Mac Window Controls -->
+                    <div class="flex gap-2 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                    </div>
+
+                    <div class="text-[#8b949e] mb-4 border-b border-gray-800 pb-2"># GnitHub CLI - バージョン管理された物理学の世界へようこそ</div>
+
+                    <!-- Command 1 -->
+                    <div class="mb-5">
+                        <div class="flex">
+                            <span class="text-gh-green mr-2 font-bold">gnit@user:~$</span>
+                            <span class="text-white">gnit commit -m "重力加速度の代入ミスを修正"</span>
+                        </div>
+                        <div class="text-[#c9d1d9] mt-1 pl-2 border-l-2 border-[#30363d] ml-1">
+                            <div>[main f=ma] 重力加速度の代入ミスを修正</div>
+                            <div class="text-[#8b949e] mt-1">1 file changed, 1 insertion(+), 1 deletion(-)</div>
+                            <div class="text-[#3fb950] mt-1">+ const g = 9.80665; // m/s^2 (厳密解)</div>
+                            <div class="text-[#f85149]">- const g = 10;      // ゆとり教育</div>
+                        </div>
+                    </div>
+
+                    <!-- Command 2 -->
+                    <div class="mb-5">
+                        <div class="flex">
+                            <span class="text-gh-green mr-2 font-bold">gnit@user:~$</span>
+                            <span class="text-white">gnit merge quantum_mechanics general_relativity</span>
+                        </div>
+                        <div class="text-[#c9d1d9] mt-1 pl-2 border-l-2 border-[#30363d] ml-1">
+                            <div>Auto-merging theory_of_everything.md</div>
+                            <div class="text-[#f85149] font-bold mt-1">CONFLICT (logic): 次元が合いません。Merge conflict in gravity_scale.tex</div>
+                            <div class="text-[#8b949e]">Automatic merge failed; 統一理論を構築してから再度コミットしてください。</div>
+                        </div>
+                    </div>
+
+                    <!-- Command 3 -->
+                    <div class="mb-5">
+                        <div class="flex">
+                            <span class="text-gh-green mr-2 font-bold">gnit@user:~$</span>
+                            <span class="text-white">gnit revert HEAD~1</span>
+                        </div>
+                        <div class="text-[#c9d1d9] mt-1 pl-2 border-l-2 border-[#30363d] ml-1">
+                            <div class="text-[#8b949e]">Reverting commit: "この非線形偏微分方程式、解析的に解けるはず（フラグ）"</div>
+                            <div class="mt-1">Revert successful. 解答用紙は完全に白紙の状態に戻りました。</div>
+                            <div class="text-[#d2a8ff] italic mt-1">「やっぱりこの解法は筋が悪かった…」</div>
+                        </div>
+                    </div>
+
+                    <!-- Command 4 -->
+                    <div class="mb-5">
+                        <div class="flex">
+                            <span class="text-gh-green mr-2 font-bold">gnit@user:~$</span>
+                            <span class="text-white">gnit blame exam_answer.tex</span>
+                        </div>
+                        <div class="text-[#c9d1d9] mt-1 pl-2 border-l-2 border-[#30363d] ml-1">
+                            <div class="text-[#8b949e]">^1687 (Isaac Newton   1687-07-05)  $$F = ma$$</div>
+                            <div class="text-[#8b949e]">^1915 (A. Einstein    1915-11-25)  $$R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}T_{\mu\nu}$$</div>
+                            <div class="text-[#f85149] font-bold">^2026 (You            2026-04-01)  $$\sin \theta \approx \theta \approx 1$$   <-- 誰だよここでこんな近似使ったやつ！</div>
+                        </div>
+                    </div>
+
+                    <!-- Command 5 -->
+                    <div class="mb-2">
+                        <div class="flex">
+                            <span class="text-gh-green mr-2 font-bold">gnit@user:~$</span>
+                            <span class="text-white">gnit push origin universe</span>
+                        </div>
+                        <div class="text-[#c9d1d9] mt-1 pl-2 border-l-2 border-[#30363d] ml-1">
+                            <div class="text-[#8b949e]">Enumerating objects: 42, done.</div>
+                            <div class="text-[#8b949e]">Writing objects: 100% (42/42), 6.626e-34 Js, done.</div>
+                            <div>To https://gnithub.com/universe/truth.gnit</div>
+                            <div class="text-gh-link mt-1"> * [new branch]      universe -> truth</div>
+                            <div class="text-[#3fb950] font-bold mt-2">✓ Answer submitted successfully. Gnit score +15.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex mt-2">
+                        <span class="text-gh-green mr-2 font-bold">gnit@user:~$</span><span class="blinking-cursor w-2.5 h-4 bg-white inline-block"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pinned Repos -->
+            <div>
+                <h2 class="text-base text-white font-normal mb-4">Pinned Formulas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Repo 1 -->
+                    <div class="border border-gh-border rounded-md p-4 flex flex-col h-full bg-gh-header">
+                        <div class="flex items-center justify-between mb-2">
+                            <a href="#" class="text-gh-link font-semibold hover:underline flex items-center"><i class="fa-solid fa-book text-gh-muted mr-2"></i> theory-of-everything</a>
+                            <span class="border border-gh-border rounded-full px-2 py-0.5 text-xs text-gh-muted">Public</span>
+                        </div>
+                        <p class="text-xs text-gh-muted mb-4 flex-1">This repository contains the ultimate theory. Currently stuck at 99% completion due to gravity.</p>
+                        <div class="flex items-center text-xs text-gh-muted gap-4">
+                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-purple-500 mr-1"></span> String Theory</span>
+                            <a href="#" class="hover:text-gh-link"><i class="fa-regular fa-star mr-1"></i> 13.8B</a>
+                            <a href="#" class="hover:text-gh-link"><i class="fa-solid fa-code-fork mr-1"></i> 42</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Repo 2 -->
+                    <div class="border border-gh-border rounded-md p-4 flex flex-col h-full bg-gh-bg">
+                        <div class="flex items-center justify-between mb-2">
+                            <a href="#" class="text-gh-link font-semibold hover:underline flex items-center"><i class="fa-solid fa-book text-gh-muted mr-2"></i> perpetual-motion-machine</a>
+                            <span class="border border-[#f85149] text-[#f85149] rounded-full px-2 py-0.5 text-xs">Archived</span>
+                        </div>
+                        <p class="text-xs text-gh-muted mb-4 flex-1">Deprecated. The laws of thermodynamics raised a fatal exception. Do not use in production.</p>
+                        <div class="flex items-center text-xs text-gh-muted gap-4">
+                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-red-500 mr-1"></span> Thermodynamics</span>
+                            <a href="#" class="hover:text-gh-link"><i class="fa-regular fa-star mr-1"></i> 0</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contributions Graph -->
+            <div class="mt-4">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-base text-white font-normal">1,234 solves in the last year</h2>
+                    <a href="#" class="text-xs text-gh-link hover:underline">Solve settings</a>
+                </div>
+                <div class="border border-gh-border rounded-md p-4 bg-gh-header">
+                    <div class="overflow-x-auto">
+                        <div class="flex gap-1" id="contribution-graph" style="width: max-content;">
+                            <!-- Graph will be generated by JS -->
+                        </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                const container = document.getElementById('contribution-graph');
+                                if (!container) return;
+                                
+                                let graphHTML = '';
+                                // 52 weeks
+                                for (let w = 0; w < 52; w++) {
+                                    graphHTML += '<div class="flex flex-col gap-1">';
+                                    // 7 days
+                                    for (let d = 0; d < 7; d++) {
+                                        // Random level 0-4, weighted towards 0
+                                        let level = Math.random() > 0.6 ? Math.floor(Math.random() * 4) + 1 : 0;
+                                        graphHTML += `<div class="contribution-cell bg-level-${level}" title="Solved ${level*3} problems on this day"></div>`;
+                                    }
+                                    graphHTML += '</div>';
+                                }
+                                container.innerHTML = graphHTML;
+                            });
+                        </script>
+                    </div>
+                    <div class="flex items-center justify-between mt-2 text-xs text-gh-muted">
+                        <a href="#" class="hover:text-gh-link">Learn how we count solves</a>
+                        <div class="flex items-center gap-1">
+                            <span>Less</span>
+                            <div class="contribution-cell bg-level-0"></div>
+                            <div class="contribution-cell bg-level-1"></div>
+                            <div class="contribution-cell bg-level-2"></div>
+                            <div class="contribution-cell bg-level-3"></div>
+                            <div class="contribution-cell bg-level-4"></div>
+                            <span>More</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-gh-border mt-8 py-8 text-xs text-gh-muted">
+        <div class="max-w-[1280px] mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-atom text-xl text-gh-border hover:text-gh-muted transition-colors"></i>
+                <span>&copy; 2026 Gnit, Inc.</span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#" class="hover:text-gh-link">Terms</a>
+                <a href="#" class="hover:text-gh-link">Privacy</a>
+                <a href="#" class="hover:text-gh-link">Security</a>
+                <a href="#" class="hover:text-gh-link">Status</a>
+                <a href="#" class="hover:text-gh-link">Docs</a>
+                <a href="#" class="hover:text-gh-link">Contact Physics Support</a>
+                <a href="#" class="hover:text-gh-link">Manage cookies</a>
+                <a href="#" class="hover:text-gh-link">Do not share my personal equations</a>
+            </div>
+        </div>
+        <div class="max-w-[1280px] mx-auto px-4 md:px-8 mt-6 text-center opacity-40 hover:opacity-100 transition-opacity text-[10px]">
+            <p>※本ページはエイプリルフールのジョーク企画として作成されたものです。GitHub様、およびその関連会社とは一切関係ありません。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
